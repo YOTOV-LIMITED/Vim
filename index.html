@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Vim by YOTOV-LIMITED</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Vim</h1>
+      <h2 class="project-tagline">Vim for Visual Studio Code</h2>
+      <a href="https://github.com/YOTOV-LIMITED/Vim" class="btn">View on GitHub</a>
+      <a href="https://github.com/YOTOV-LIMITED/Vim/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/YOTOV-LIMITED/Vim/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p><a href="https://travis-ci.org/VSCodeVim/Vim"><img src="https://travis-ci.org/VSCodeVim/Vim.svg?branch=master" alt="Build Status"></a> <a href="https://vscodevim-slackin.azurewebsites.net"><img src="https://vscodevim-slackin.azurewebsites.net/badge.svg" alt="Slack Status"></a></p>
+
+<h1>
+<a id="vim" class="anchor" href="#vim" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vim</h1>
+
+<p>VSCodeVim is a <a href="https://code.visualstudio.com/">Visual Studio Code</a> extension that provides Vim keybindings within Visual Studio Code.</p>
+
+<p>Please <strong><a href="https://github.com/VSCodeVim/Vim/issues">report missing or buggy features on GitHub</a></strong>.</p>
+
+<p>We've added a lot of functionality, but everyone uses Vim in their own special way, so let us know if we're missing your favorite obscure command. <g-emoji alias="wink" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f609.png">😉</g-emoji></p>
+
+<p>We're super friendly people if you want to drop by and talk to us on our <a href="https://vscodevim-slackin.azurewebsites.net">Slack channel</a>!</p>
+
+<p><img src="images/screen.png" alt="Screenshot"></p>
+
+<h2>
+<a id="features-we-support" class="anchor" href="#features-we-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features We Support</h2>
+
+<ul>
+<li>All modes (including visual block mode!)</li>
+<li>Most typical commands, including command combinations like <code>c3w</code>, <code>daw</code>, <code>2dd</code>, etc. (Check the <a href="ROADMAP.md">roadmap</a> for details.)</li>
+<li>Command remapping (jj to esc)</li>
+<li>Repeating actions with <code>.</code>
+</li>
+<li>Incremental search with <code>/</code> and <code>?</code> that works like Vim (doesn't just open the search box!)</li>
+<li>Correct undo/redo state</li>
+<li>Marks</li>
+<li>Vim Options</li>
+</ul>
+
+<h2>
+<a id="roadmap" class="anchor" href="#roadmap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<p>See our <a href="https://github.com/VSCodeVim/Vim/milestones">Github Milestone page</a> for an idea of what we plan to implement next.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<ol>
+<li>Within Visual Studio Code, open the command palette (<code>Ctrl-Shift-P</code> / <code>Cmd-Shift-P</code>)</li>
+<li>Select <code>Install Extension</code> and search for 'vim' <em>or</em> run <code>ext install vim</code>
+</li>
+</ol>
+
+<h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>F.A.Q.</h2>
+
+<h4>
+<a id="j-k-and-others-dont-repeat-when-i-hold-them-down" class="anchor" href="#j-k-and-others-dont-repeat-when-i-hold-them-down" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>j</code>, <code>k</code> and others don't repeat when I hold them down.</h4>
+
+<p>On OS X, open Terminal and run the following command:</p>
+
+<pre><code>defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+</code></pre>
+
+<h4>
+<a id="how-can-i-bind-jj-to-escape" class="anchor" href="#how-can-i-bind-jj-to-escape" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I bind <code>jj</code> to <code>&lt;escape&gt;</code>?</h4>
+
+<ol>
+<li>
+<p>Add the following to <code>settings.json</code> (open the Command Pallete and search for "User Settings"):</p>
+
+<pre><code>  "vim.insertModeKeyBindings": [
+       {
+           "before": ["j", "j"],
+           "after": ["&lt;escape&gt;"]
+       }
+  ]
+</code></pre>
+</li>
+<li>
+<p>If you want to press <code>jj</code> in modes which are not Insert Mode and still have it trigger <code>&lt;escape&gt;</code>, do the following as well:</p>
+
+<pre><code>  "vim.otherModesKeyBindings": [
+       {
+           "before": ["j", "j"],
+           "after": ["&lt;escape&gt;"]
+       }
+  ]
+</code></pre>
+</li>
+</ol>
+
+<p>Be sure to restart VSCode after making these changes.</p>
+
+<h4>
+<a id="how-can-i-bind-something-like-j-to-gj-how-can-i-get-the-equivalent-of-noremap" class="anchor" href="#how-can-i-bind-something-like-j-to-gj-how-can-i-get-the-equivalent-of-noremap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I bind something like <code>j</code> to <code>gj</code>? How can I get the equivalent of <code>:noremap</code>?</h4>
+
+<p>Notice the problem is that if you did this normally, the <code>j</code> in <code>gj</code> would be expanded into <code>gj</code>, on and on forever. To stop this recursive expansion, use vim.otherModesKeyBindingsNonRecursive!</p>
+
+<pre><code>      "vim.otherModesKeyBindingsNonRecursive": [
+           {
+               "before": ["j"],
+               "after": ["g", "j"]
+           }
+      ]
+</code></pre>
+
+<p>Don't forget to restart!</p>
+
+<h4>
+<a id="how-can-i-enable-ctrl-c-or-ctrl--as-an-alternative-to-escape" class="anchor" href="#how-can-i-enable-ctrl-c-or-ctrl--as-an-alternative-to-escape" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I enable <code>ctrl-c</code> or <code>ctrl-[</code> as an alternative to <code>&lt;escape&gt;</code>?</h4>
+
+<p>Put the following in your <code>settings.json</code>:</p>
+
+<p><code>"vim.useCtrlKeys": true</code></p>
+
+<p>and restart VSCode.</p>
+
+<h4>
+<a id="how-can-i-enable-ctrl-f" class="anchor" href="#how-can-i-enable-ctrl-f" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I enable <code>ctrl-f</code>?</h4>
+
+<p>Put the following in your <code>settings.json</code>:</p>
+
+<p><code>"vim.useCtrlKeys": true</code></p>
+
+<p>and restart VSCode.</p>
+
+<h4>
+<a id="how-can-i-enable-visual-block-mode-with-ctrl-v" class="anchor" href="#how-can-i-enable-visual-block-mode-with-ctrl-v" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I enable visual block mode with <code>ctrl-v</code>?</h4>
+
+<p>Put the following in your <code>settings.json</code>:</p>
+
+<p><code>"vim.useCtrlKeys": true</code></p>
+
+<p>and restart VSCode.</p>
+
+<h4>
+<a id="vim-option-override-sequence" class="anchor" href="#vim-option-override-sequence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vim option override sequence.</h4>
+
+<p>The way we load Vim options is slightly different from native Vim as there is some overlap between Code and Vim. The option loading sequence is as below.</p>
+
+<ol>
+<li>
+<code>:set {option}</code> on the fly</li>
+<li>[TODO] .vimrc.</li>
+<li>
+<code>vim.{option}</code> from user settings or workspace settings.</li>
+<li>VS Code configuration</li>
+<li>VSCodeVim flavored Vim option default values</li>
+</ol>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>This project is maintained by a group of awesome <a href="https://github.com/VSCodeVim/Vim/graphs/contributors">contributors</a> and contributions are extremely welcome <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png">❤️</g-emoji>. If you are having trouble thinking of how you can help, check out our <a href="ROADMAP.md">roadmap</a>.</p>
+
+<p>For a quick tutorial on how to get started, see our <a href="/.github/CONTRIBUTING.md">contributing guide</a>.</p>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changelog</h2>
+
+<p>Please see our <a href="https://github.com/VSCodeVim/Vim/releases">list of recent releases and features added.</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT, please see <a href="LICENSE">License</a> for more information.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/YOTOV-LIMITED/Vim">Vim</a> is maintained by <a href="https://github.com/YOTOV-LIMITED">YOTOV-LIMITED</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
